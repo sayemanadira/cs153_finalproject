@@ -10,15 +10,16 @@ class FingersDataset(Dataset):
         self.transform = transform
         self.image_paths = []
         self.labels = []
-        
-        # Assuming images are in root_dir and filenames end with two characters indicating fingers and hand, e.g., "[...]_5R.jpg"
-        for filename in os.listdir(root_dir):
-            if filename.endswith('.jpg') or filename.endswith('.png'):
-                self.image_paths.append(os.path.join(root_dir, filename))
-                # Extract label from the last two characters before extension (first char is number of fingers)
-                base_name = filename.split('.')[0]
-                last_two = base_name[-2:]
-                label = int(last_two[0])
+
+        for filename in sorted(os.listdir(root_dir)):
+            if filename.endswith(('.jpg', '.png', '.jpeg')):
+                path = os.path.join(root_dir, filename)
+
+                base_name = os.path.splitext(filename)[0]   # remove extension
+                suffix = base_name.split('_')[-1]          # e.g. "5R"
+                label = int(suffix[0])                     # e.g. 5
+
+                self.image_paths.append(path)
                 self.labels.append(label)
     
     def __len__(self):
@@ -37,6 +38,16 @@ def get_data_loader(root_dir, batch_size=32, shuffle=True, transform=None):
     if transform is None:
         transform = transforms.Compose([
             transforms.Resize((224, 224)),
+            transforms.ToTensor(),
+            transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+        ])
+    elif transform == 'train':
+        transform = transforms.Compose([
+            transforms.Resize((224, 224)),
+            transforms.RandomRotation(10),
+            transforms.RandomAffine(degrees=0, 
+                                    translate=(0.1, 0.1), 
+                                    scale=(0.9, 1.1)),
             transforms.ToTensor(),
             transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
         ])
