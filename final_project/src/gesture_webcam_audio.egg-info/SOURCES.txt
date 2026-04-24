@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+src/gesture_webcam_audio/__init__.py
+src/gesture_webcam_audio/app.py
+src/gesture_webcam_audio.egg-info/PKG-INFO
+src/gesture_webcam_audio.egg-info/SOURCES.txt
+src/gesture_webcam_audio.egg-info/dependency_links.txt
+src/gesture_webcam_audio.egg-info/entry_points.txt
+src/gesture_webcam_audio.egg-info/requires.txt
+src/gesture_webcam_audio.egg-info/top_level.txt

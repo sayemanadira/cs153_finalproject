@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gesture-webcam-audio"
+version = "0.1.0"
+description = "Webcam capture with MediaPipe-ready setup and audio output dependencies"
+readme = "README.md"
+requires-python = ">=3.10,<3.12"
+license = { text = "MIT" }
+authors = [{ name = "CS153 Final Project" }]
+dependencies = [
+  "opencv-python>=4.9",
+  "mediapipe>=0.10.14",
+  "joblib>=1.3",
+  "scikit-learn>=1.3",
+]
+
+[project.optional-dependencies]
+audio = ["PyAudio>=0.2.14"]
+
+[project.scripts]
+gesture-webcam = "gesture_webcam_audio.app:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

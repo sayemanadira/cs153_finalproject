@@ -1,0 +1,42 @@
+Metadata-Version: 2.4
+Name: gesture-webcam-audio
+Version: 0.1.0
+Summary: Webcam capture with MediaPipe-ready setup and audio output dependencies
+Author: CS153 Final Project
+License: MIT
+Requires-Python: <3.12,>=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: opencv-python>=4.9
+Requires-Dist: mediapipe>=0.10.14
+Requires-Dist: joblib>=1.3
+Requires-Dist: scikit-learn>=1.3
+Provides-Extra: audio
+Requires-Dist: PyAudio>=0.2.14; extra == "audio"
+
+# Gesture Webcam Audio
+
+This package provides a webcam capture entry point and dependency setup for MediaPipe and audio output.
+
+## Conda setup (recommended for PyAudio)
+
+```bash
+conda env create -f environment.yml
+conda activate gesture-webcam-audio
+```
+
+## Build wheel
+
+```bash
+python -m pip install --upgrade pip build
+python -m build --wheel
+```
+
+The wheel will be created in `dist/`.
+
+## Run webcam preview
+
+```bash
+gesture-webcam
+```
+
+Press `q` to quit.
