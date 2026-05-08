@@ -1,7 +1,0 @@
-opencv-python>=4.9
-mediapipe>=0.10.14
-joblib>=1.3
-scikit-learn>=1.3
-
-[audio]
-PyAudio>=0.2.14
